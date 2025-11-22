@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bzzzzzz - Mosquito Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+</head>
+<body>
+    <!-- Name Input Screen -->
+    <div id="name-input-screen" class="screen">
+        <div class="card">
+            <h1 class="title">Bzzzzzz....</h1>
+            <div class="mosquito-image">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Mosquito body -->
+                    <ellipse cx="50" cy="45" rx="8" ry="12" fill="#8B4513"/>
+                    <!-- Wings -->
+                    <ellipse cx="42" cy="40" rx="6" ry="10" fill="#D3D3D3" opacity="0.6"/>
+                    <ellipse cx="58" cy="40" rx="6" ry="10" fill="#D3D3D3" opacity="0.6"/>
+                    <!-- Legs -->
+                    <line x1="45" y1="50" x2="40" y2="60" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="50" y1="52" x2="48" y2="62" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="55" y1="50" x2="60" y2="60" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="45" y1="48" x2="38" y2="55" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="55" y1="48" x2="62" y2="55" stroke="#8B4513" stroke-width="1"/>
+                    <!-- Antennae -->
+                    <line x1="48" y1="35" x2="46" y2="25" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="52" y1="35" x2="54" y2="25" stroke="#8B4513" stroke-width="1"/>
+                    <!-- Proboscis -->
+                    <line x1="50" y1="55" x2="50" y2="65" stroke="#8B4513" stroke-width="1.5"/>
+                </svg>
+            </div>
+            <div class="name-input-container">
+                <label for="player-name-input" class="name-label">Please Enter your name</label>
+                <input type="text" id="player-name-input" class="name-input" placeholder="Your name" maxlength="20" autocomplete="off">
+            </div>
+            <button id="start-btn" class="start-button">Start Game</button>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen hidden">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="icon">🕐</span>
+                <span id="timer">1:00</span>
+            </div>
+            <div class="status-item">
+                <span>Score <span id="score">0</span></span>
+            </div>
+            <div class="status-item">
+                <span id="hearts">❤️❤️❤️</span>
+            </div>
+        </div>
+
+        <!-- Game Area -->
+        <div id="game-area" class="game-area">
+            <!-- Mosquitoes will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Game End Screen -->
+    <div id="game-end-screen" class="screen hidden">
+        <div class="end-screen-card">
+            <h2 class="end-title">Game Over!</h2>
+            
+            <!-- Score Display -->
+            <div class="score-display">
+                <p class="score-label">Your Score</p>
+                <p class="score-number" id="final-score">0</p>
+            </div>
+
+            <!-- Leaderboard -->
+            <div class="leaderboard-container">
+                <h3 class="leaderboard-title">Leaderboard</h3>
+                <div class="leaderboard-list" id="leaderboard-list">
+                    <!-- Leaderboard items will be dynamically added here -->
+                    <div class="leaderboard-empty">No scores yet. Be the first!</div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="end-screen-buttons">
+                <button id="restart-btn" class="restart-button">Restart Game</button>
+                <button id="new-game-btn" class="new-game-button">Start a New Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
+

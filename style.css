@@ -1,0 +1,412 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #E5E5E5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.screen {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Opening Screen */
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+}
+
+.mosquito-image {
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    background-color: #F5F5DC;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.mosquito-image svg {
+    width: 100%;
+    height: 100%;
+}
+
+.start-button {
+    background-color: #8B0000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background-color 0.2s;
+}
+
+.start-button:hover {
+    background-color: #A52A2A;
+}
+
+.start-button:active {
+    transform: scale(0.98);
+}
+
+/* Name Input */
+.name-input-container {
+    margin: 30px 0;
+}
+
+.name-label {
+    display: block;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.name-input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid #E5E5E5;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: inherit;
+}
+
+.name-input:focus {
+    border-color: #8B0000;
+}
+
+.name-input::placeholder {
+    color: #999;
+}
+
+/* Game Screen */
+.status-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-item {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.icon {
+    font-size: 18px;
+}
+
+#hearts {
+    font-size: 20px;
+}
+
+.game-area {
+    width: 100%;
+    height: 100vh;
+    background-color: #E5E5E5;
+    position: relative;
+    overflow: hidden;
+    margin-top: 60px;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="80" viewBox="0 0 60 80"><rect x="5" y="0" width="50" height="30" rx="3" fill="%23FFD700" stroke="%23FFA500" stroke-width="1"/><rect x="7" y="2" width="46" height="26" fill="%23FFD700" opacity="0.3"/><line x1="10" y1="5" x2="50" y2="5" stroke="%23FFA500" stroke-width="0.5"/><line x1="10" y1="10" x2="50" y2="10" stroke="%23FFA500" stroke-width="0.5"/><line x1="10" y1="15" x2="50" y2="15" stroke="%23FFA500" stroke-width="0.5"/><line x1="10" y1="20" x2="50" y2="20" stroke="%23FFA500" stroke-width="0.5"/><line x1="10" y1="25" x2="50" y2="25" stroke="%23FFA500" stroke-width="0.5"/><line x1="5" y1="5" x2="5" y2="25" stroke="%23FFA500" stroke-width="0.5"/><line x1="15" y1="5" x2="15" y2="25" stroke="%23FFA500" stroke-width="0.5"/><line x1="25" y1="5" x2="25" y2="25" stroke="%23FFA500" stroke-width="0.5"/><line x1="35" y1="5" x2="35" y2="25" stroke="%23FFA500" stroke-width="0.5"/><line x1="45" y1="5" x2="45" y2="25" stroke="%23FFA500" stroke-width="0.5"/><line x1="55" y1="5" x2="55" y2="25" stroke="%23FFA500" stroke-width="0.5"/><path d="M 30 30 L 28 70 L 30 75 L 32 70 Z" fill="%23FFD700" stroke="%23FFA500" stroke-width="1"/><circle cx="30" cy="77" r="2" fill="%23FFD700" stroke="%23FFA500" stroke-width="0.5"/></svg>') 30 10, auto;
+}
+
+/* Mosquito Container - larger hitbox */
+.mosquito-container {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="80" viewBox="0 0 60 80"><rect x="5" y="0" width="50" height="30" rx="3" fill="%23FFD700" stroke="%23FFA500" stroke-width="1"/><rect x="7" y="2" width="46" height="26" fill="%23FFD700" opacity="0.3"/><line x1="10" y1="5" x2="50" y2="5" stroke="%23FFA500" stroke-width="0.5"/><line x1="10" y1="10" x2="50" y2="10" stroke="%23FFA500" stroke-width="0.5"/><line x1="10" y1="15" x2="50" y2="15" stroke="%23FFA500" stroke-width="0.5"/><line x1="10" y1="20" x2="50" y2="20" stroke="%23FFA500" stroke-width="0.5"/><line x1="10" y1="25" x2="50" y2="25" stroke="%23FFA500" stroke-width="0.5"/><line x1="5" y1="5" x2="5" y2="25" stroke="%23FFA500" stroke-width="0.5"/><line x1="15" y1="5" x2="15" y2="25" stroke="%23FFA500" stroke-width="0.5"/><line x1="25" y1="5" x2="25" y2="25" stroke="%23FFA500" stroke-width="0.5"/><line x1="35" y1="5" x2="35" y2="25" stroke="%23FFA500" stroke-width="0.5"/><line x1="45" y1="5" x2="45" y2="25" stroke="%23FFA500" stroke-width="0.5"/><line x1="55" y1="5" x2="55" y2="25" stroke="%23FFA500" stroke-width="0.5"/><path d="M 30 30 L 28 70 L 30 75 L 32 70 Z" fill="%23FFD700" stroke="%23FFA500" stroke-width="1"/><circle cx="30" cy="77" r="2" fill="%23FFD700" stroke="%23FFA500" stroke-width="0.5"/></svg>') 30 10, auto;
+    will-change: transform;
+    transform-origin: center;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mosquito-container:hover .mosquito {
+    filter: brightness(1.2);
+}
+
+/* Mosquito */
+.mosquito {
+    width: 40px;
+    height: 40px;
+    will-change: transform;
+    transform-origin: center;
+    transition: transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Lottie container */
+.mosquito .lottie-container {
+    width: 100%;
+    height: 100%;
+}
+
+.mosquito:hover {
+    transform: scale(1.1);
+}
+
+.mosquito svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.mosquito.killed {
+    animation: killAnimation 0.3s ease-out forwards;
+}
+
+@keyframes killAnimation {
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+/* Blood drop effect */
+.blood-drop {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.blood-drop svg {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes bloodSplash {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.blood-drop {
+    animation: bloodSplash 0.5s ease-out forwards;
+}
+
+/* Game End Screen */
+.end-screen-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.end-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+}
+
+/* Score Display */
+.score-display {
+    margin-bottom: 30px;
+}
+
+.score-label {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.score-number {
+    font-size: 48px;
+    font-weight: bold;
+    color: #8B0000;
+}
+
+/* Leaderboard */
+.leaderboard-container {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.leaderboard-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.leaderboard-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 2px solid #E5E5E5;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #FAFAFA;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    background-color: white;
+    border-radius: 8px;
+    border-left: 4px solid #8B0000;
+    transition: transform 0.2s;
+}
+
+.leaderboard-item:hover {
+    transform: translateX(5px);
+}
+
+.leaderboard-item:last-child {
+    margin-bottom: 0;
+}
+
+.leaderboard-rank {
+    font-weight: bold;
+    color: #8B0000;
+    min-width: 30px;
+    font-size: 18px;
+}
+
+.leaderboard-name {
+    flex: 1;
+    font-size: 16px;
+    color: #1a1a1a;
+    margin: 0 15px;
+    text-align: left;
+}
+
+.leaderboard-score {
+    font-weight: 600;
+    color: #1a1a1a;
+    font-size: 16px;
+}
+
+.leaderboard-empty {
+    text-align: center;
+    padding: 30px;
+    color: #999;
+    font-style: italic;
+}
+
+/* End Screen Buttons */
+.end-screen-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.restart-button {
+    background-color: #8B0000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 50px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+}
+
+.restart-button:hover {
+    background-color: #A52A2A;
+}
+
+.restart-button:active {
+    transform: scale(0.98);
+}
+
+.new-game-button {
+    background-color: #4A4A4A;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 50px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+}
+
+.new-game-button:hover {
+    background-color: #666;
+}
+
+.new-game-button:active {
+    transform: scale(0.98);
+}
+
